@@ -5,6 +5,15 @@
 # ==============================================================================
 
 
-bashio::log.info "Starting Example2..."
+bashio::log.info "Starting Nginx..."
+if pgrep -f "[n]ginx:" > /dev/null; then
+    pkill -ef [n]ginx:
+    sleep 1
+fi
 
-exec /usr/bin/example2.sh
+if pgrep -f "[n]ginx:" > /dev/null; then
+    pkill -9 -ef [n]ginx:
+    sleep 1
+fi
+
+exec /usr/sbin/nginx -c /config/nginx/nginx.conf
