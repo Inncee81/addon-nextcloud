@@ -5,6 +5,5 @@
 # ==============================================================================
 
 
-bashio::log.info "Starting Example1..."
-
-exec /usr/bin/example1.sh
+bashio::log.info "Starting Cron..."
+/usr/sbin/crond -f -S -l 0 -c /etc/crontabs

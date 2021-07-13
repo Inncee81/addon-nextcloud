@@ -1,0 +1,10 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Home Assistant Community Add-on: Example
+# Runs example2 script
+# ==============================================================================
+
+
+bashio::log.info "Starting php-fpm..."
+
+exec /usr/sbin/php-fpm7 -F
