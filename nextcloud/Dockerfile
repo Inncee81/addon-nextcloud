@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base/amd64:10.0.0
+ARG BUILD_FROM=ghcr.io/hassio-addons/base/aarch64:10.0.0
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -38,7 +38,8 @@ RUN \
 
 # environment settings
 ENV NEXTCLOUD_PATH="/data/www/nextcloud" \
-  LD_PRELOAD="/usr/lib/preloadable_libiconv.so"
+  LD_PRELOAD="/usr/lib/preloadable_libiconv.so" \
+  NEXTCLOUD_RELEASE=22
 
 RUN \
  echo "**** install build packages ****" && \
@@ -129,6 +130,7 @@ RUN \
 	| awk -F\' '/VERSIONS_SERVER_FULL_STABLE/ {print $2;exit}'); \
  fi && \
  echo "**** download nextcloud ****" && \
+ mkdir /app && \
  curl -o /app/nextcloud.tar.bz2 -L \
 	https://download.nextcloud.com/server/releases/nextcloud-${NEXTCLOUD_RELEASE}.tar.bz2 && \
  echo "**** cleanup ****" && \
