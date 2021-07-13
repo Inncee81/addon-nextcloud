@@ -18,7 +18,7 @@ Nextcloud add-on for Home Assistant.
 
 ## About
 
-This is an nextcloud add-on for Home Assistant. 
+This is an nextcloud add-on for Home Assistant.
 
 [:books: Read the full add-on documentation][docs]
 
