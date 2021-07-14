@@ -41,7 +41,8 @@ or user data will be affected by this operation.
 
 ### Option: `trusted_domains`
 
-The `trusted_domains` option lets you add domains which will be accepted to access nextcloud.
+The `trusted_domains` option lets you add domains which will
+be accepted to access nextcloud.
 
 Please note that the first domain/ip will be added automatically.
 
@@ -63,7 +64,6 @@ location ^~ /.well-known {
     try_files $uri $uri/ =404;
 }
 ```
-
 1. Add the (sub)domain to `trusted_domains`
 
 ## Changelog & Releases
