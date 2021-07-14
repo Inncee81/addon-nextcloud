@@ -7,10 +7,12 @@
   "init": false,
   "arch": ["aarch64", "amd64"],
   "options": {
-    "reset_database": ""
+    "reset_database": "",
+    "trusted_domains": []
   },
   "schema": {
-    "reset_database": "bool"
+    "reset_database": "bool",
+    "trusted_domains": ["str"]
   },
   "map": [
     "config:rw",
