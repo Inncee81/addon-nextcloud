@@ -7,7 +7,7 @@
   "init": false,
   "arch": ["aarch64", "amd64"],
   "options": {
-    "reset_database": "",
+    "reset_database": false,
     "trusted_domains": []
   },
   "schema": {
@@ -24,7 +24,7 @@
   ],
   "services": ["mysql:need"],
   "ports": {
-    "8080/tcp": 8080
+    "8080/tcp": null
   },
   "ports_description": {
     "8080/tcp": "Nextcloud Web Port"
