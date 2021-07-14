@@ -68,8 +68,6 @@ location ^~ /.well-known {
 
 ```
 
-
-
 ## Changelog & Releases
 
 This repository keeps a change log using [GitHub's releases][releases]
