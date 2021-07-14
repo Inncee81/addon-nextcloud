@@ -41,15 +41,16 @@ or user data will be affected by this operation.
 
 ### Option: `trusted_domains`
 
-The `trusted_domains` option lets you add domains which will be accepted to access nextcloud. 
+The `trusted_domains` option lets you add domains which will be accepted to access nextcloud.
 
-Please note that the first domain/ip will be added automatically. 
+Please note that the first domain/ip will be added automatically.
 
 ## Use Nginx proxy to secure instance (enable https)
 
 1. Install Nginx Proxy Manager add-on (follow add-on guide)
 1. Create a virtual host with your (sub)domain and issue a Letsencrypt certificate
 1. Add the following to the virtual host advanced tab:
+
 ```conf
 location ^~ /.well-known {
     # The following 6 rules are borrowed from `.htaccess`
@@ -62,6 +63,7 @@ location ^~ /.well-known {
     try_files $uri $uri/ =404;
 }
 ```
+
 1. Add the (sub)domain to `trusted_domains`
 
 ## Changelog & Releases
