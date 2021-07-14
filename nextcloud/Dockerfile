@@ -9,10 +9,10 @@ COPY rootfs /
 RUN \
   echo "**** install build packages ****" && \
   apk add --no-cache \
+    mysql-client \
     apache2-utils \
     git \
     libressl3.3-libssl \
-    logrotate \
     nano \
     nginx \
     openssl \
@@ -26,20 +26,12 @@ RUN \
     php7-simplexml \
     php7-xml \
     php7-xmlwriter \
-    php7-zlib && \
-  echo "**** configure nginx ****" && \
-  echo 'fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;' >> \
-    /etc/nginx/fastcgi_params && \
-  rm -f /etc/nginx/http.d/default.conf && \
-  echo "**** fix logrotate ****" && \
-  sed -i "s#/var/log/messages {}.*# #g" /etc/logrotate.conf && \
-  sed -i 's#/usr/sbin/logrotate /etc/logrotate.conf#/usr/sbin/logrotate /etc/logrotate.conf -s /config/log/logrotate.status#g' \
-    /etc/periodic/daily/logrotate
+    php7-zlib 
 
 # environment settings
-ENV NEXTCLOUD_PATH="/data/www/nextcloud" \
+ENV NEXTCLOUD_PATH="/data/nextcloud" \
   LD_PRELOAD="/usr/lib/preloadable_libiconv.so" \
-  NEXTCLOUD_RELEASE=22
+  NEXTCLOUD_RELEASE=22.0.0
 
 RUN \
  echo "**** install build packages ****" && \

@@ -7,4 +7,14 @@
 
 bashio::log.info "Starting php-fpm..."
 
-exec /usr/sbin/php-fpm7 -F
+export SERVICE_HOST
+export SERVICE_PASSWORD
+export SERVICE_PORT
+export SERVICE_USERNAME
+
+SERVICE_HOST=$(bashio::services "mysql" "host")
+SERVICE_PASSWORD=$(bashio::services "mysql" "password")
+SERVICE_PORT=$(bashio::services "mysql" "port")
+SERVICE_USERNAME=$(bashio::services "mysql" "username")
+
+exec php-fpm7 --nodaemonize -R

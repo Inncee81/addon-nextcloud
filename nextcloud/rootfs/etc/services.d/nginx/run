@@ -1,19 +1,12 @@
 #!/usr/bin/with-contenv bashio
 # ==============================================================================
-# Home Assistant Community Add-on: Example
-# Runs example2 script
+# Home Assistant Community Add-on: phpMyAdmin
+# Runs the Nginx daemon
 # ==============================================================================
 
+# Wait for PHP-FPM to become available
+bashio::net.wait_for 9001
 
-bashio::log.info "Starting Nginx..."
-if pgrep -f "[n]ginx:" > /dev/null; then
-    pkill -ef [n]ginx:
-    sleep 1
-fi
+bashio::log.info "Starting NGinx...."
 
-if pgrep -f "[n]ginx:" > /dev/null; then
-    pkill -9 -ef [n]ginx:
-    sleep 1
-fi
-
-exec /usr/sbin/nginx -c /config/nginx/nginx.conf
+exec nginx
