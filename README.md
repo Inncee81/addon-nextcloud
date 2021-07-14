@@ -51,7 +51,7 @@ SOFTWARE.
 [commits-shield]: https://img.shields.io/github/commit-activity/y/elcajon/addon-nextcloud.svg
 [commits]: https://github.com/elcajon/addon-nextcloud/commits/main
 [contributors]: https://github.com/elcajon/addon-nextcloud/graphs/contributors
-[docs]: https://github.com/elcajon/addon-nextcloud/blob/main/example/DOCS.md
+[docs]: https://github.com/elcajon/addon-nextcloud/blob/main/nextcloud/DOCS.md
 [github-actions-shield]: https://github.com/elcajon/addon-nextcloud/workflows/CI/badge.svg
 [github-actions]: https://github.com/elcajon/addon-nextcloud/actions
 [i386-shield]: https://img.shields.io/badge/i386-no-red.svg
