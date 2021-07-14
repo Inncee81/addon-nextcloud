@@ -19,7 +19,7 @@
     "share:rw",
     "backup:rw",
     "media:rw"
-    ],
+  ],
   "services": ["mysql:need"],
   "ports": {
     "8080/tcp": 8080
