@@ -1,5 +1,6 @@
 #!/usr/bin/with-contenv bashio
 # install app
+fresh_install=false
 if [ ! -e "${NEXTCLOUD_PATH}/index.php" ]; then
 	bashio::log.info "Installing Nextcloud, this can take a while...."
 	mkdir -p /data/nextcloud
@@ -23,9 +24,10 @@ if [ ! -e "${NEXTCLOUD_PATH}/index.php" ]; then
 	sed -i -- "s/HADBPASS/$DBPASS/g" /data/nextcloud/config/autoconfig.php
 	sed -i -- "s/HADBHOST/$DBHOST/g" /data/nextcloud/config/autoconfig.php
 	sed -i -- "s/HADBPORT/$DBPORT/g" /data/nextcloud/config/autoconfig.php
+	fresh_install=true
 fi
 
-if bashio::config.has_value 'trusted_domains'; then
+if [ "bashio::config.has_value 'trusted_domains'" ] && [ "$fresh_install" = false ]; then
 	bashio::log.info "Adding trusted domains...."
 	#reset
 	php /data/nextcloud/occ config:system:set trusted_domains
