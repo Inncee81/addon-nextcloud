@@ -64,6 +64,7 @@ location ^~ /.well-known {
     try_files $uri $uri/ =404;
 }
 ```
+
 1. Add the (sub)domain to `trusted_domains`
 
 ## Changelog & Releases
