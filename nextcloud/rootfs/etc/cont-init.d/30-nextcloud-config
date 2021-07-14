@@ -9,27 +9,18 @@ if [ ! -e "${NEXTCLOUD_PATH}/index.php" ]; then
 	chmod +x "${NEXTCLOUD_PATH}/occ"
 
 	chown -R root:root /data/nextcloud /data/nextcloud_data
-fi
 
-# copy config
-if [ ! -f /share/nextcloud/config.php ]; then
 	bashio::log.info "Initial Nextcloud setup...."
-	mkdir -p /share/nextcloud
-    cp /defaults/config.php /share/nextcloud/config.php
+    cp /defaults/config.php /data/nextcloud/config/
 	cp /defaults/autoconfig.php /data/nextcloud/config/
 
 	DBPASS=$(bashio::services "mysql" "password")
 	DBUSER=$(bashio::services "mysql" "username")
 	DBHOST=$(bashio::services "mysql" "host")
-	DBPORT=$(bashio::services "mysql" "port")
 
 
 	sed -i -- "s/HADBUSER/$DBUSER/g" /data/nextcloud/config/autoconfig.php
 	sed -i -- "s/HADBPASS/$DBPASS/g" /data/nextcloud/config/autoconfig.php
 	sed -i -- "s/HADBHOST/$DBHOST/g" /data/nextcloud/config/autoconfig.php
-	bashio::log.info "Creating database...."
-	mysql -u $DBUSER --password=$DBPASS -P $DBPORT -h $DBHOST -e "CREATE DATABASE IF NOT EXISTS nextcloud "
 
 fi
-[[ ! -f /data/nextcloud/config/config.php ]] && \
-	ln -s /share/nextcloud/config.php /data/nextcloud/config/config.php
