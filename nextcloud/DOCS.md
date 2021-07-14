@@ -1,6 +1,6 @@
 # Home Assistant Add-on: Nextcloud
 
-This add-on provides Nextcloud for Home Assistant. 
+This add-on provides Nextcloud for Home Assistant.
 
 - MariaDB is required as database for Nextcloud to work
 - Nextcloud configuration data will kept persistent under `/data/nextcloud`
