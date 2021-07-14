@@ -17,10 +17,10 @@ if [ ! -e "${NEXTCLOUD_PATH}/index.php" ]; then
 	DBPASS=$(bashio::services "mysql" "password")
 	DBUSER=$(bashio::services "mysql" "username")
 	DBHOST=$(bashio::services "mysql" "host")
-
+	DBPORT=$(bashio::services "mysql" "port")
 
 	sed -i -- "s/HADBUSER/$DBUSER/g" /data/nextcloud/config/autoconfig.php
 	sed -i -- "s/HADBPASS/$DBPASS/g" /data/nextcloud/config/autoconfig.php
 	sed -i -- "s/HADBHOST/$DBHOST/g" /data/nextcloud/config/autoconfig.php
-
+	sed -i -- "s/HADBPORT/$DBPORT/g" /data/nextcloud/config/autoconfig.php
 fi
