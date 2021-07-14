@@ -1,0 +1,5 @@
+---
+configuration:
+  reset_database:
+    name: Datenbank zurücksetzen
+    description: Nextcloud Datenbank wird gelöscht und anschließend erneut erzeugt (Drop & Create)
