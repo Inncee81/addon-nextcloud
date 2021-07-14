@@ -50,9 +50,11 @@ Please note that the first domain/ip will be added automatically.
 
 1. Install Nginx Proxy Manager add-on (follow add-on guide)
 1. Create a virtual host with your (sub)domain and issue a Letsencrypt certificate
-1. Add the following to the virtual host advanced tab:
+1. Add the code below to the virtual host `advanced` tab.
+1. Add the (sub)domain to `trusted_domains`
 
 ```conf
+
 location ^~ /.well-known {
     # The following 6 rules are borrowed from `.htaccess`
 
@@ -63,9 +65,10 @@ location ^~ /.well-known {
 
     try_files $uri $uri/ =404;
 }
+
 ```
 
-1. Add the (sub)domain to `trusted_domains`
+
 
 ## Changelog & Releases
 
