@@ -16,7 +16,7 @@ comparison to installing any other Home Assistant add-on.
 1. Search for the "Nextcloud" add-on in the Supervisor add-on store and install it.
 1. Start the "Nextcloud" add-on.
 1. Check the logs of the "Nextcloud" add-on to see when initialization is done.
-1. Open <ip>:8080 to create an admin user.
+1. Open `<ip>:8080` to create an admin user.
 
 ## Configuration
 
@@ -30,10 +30,11 @@ reset_database: true|false
 
 ### Option: `reset_database`
 
-The `reset_database` option lets you reset (drop and create again) the Nextcloud database.
+The `reset_database` option lets you reset (drop and create again)
+the Nextcloud database.
 
-Please note that only the database will be purged and no configuration or user data will be affected
-by this operation. .
+Please note that only the database will be purged and no configuration
+or user data will be affected by this operation. .
 
 ## Changelog & Releases
 
