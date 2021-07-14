@@ -47,14 +47,14 @@ SOFTWARE.
 [aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg
 [amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
 [armhf-shield]: https://img.shields.io/badge/armhf-no-red.svg
-[armv7-shield]: https://img.shields.io/badge/armv7-np-red.svg
+[armv7-shield]: https://img.shields.io/badge/armv7-no-red.svg
 [commits-shield]: https://img.shields.io/github/commit-activity/y/elcajon/addon-nextcloud.svg
 [commits]: https://github.com/elcajon/addon-nextcloud/commits/main
 [contributors]: https://github.com/elcajon/addon-nextcloud/graphs/contributors
 [docs]: https://github.com/elcajon/addon-nextcloud/blob/main/example/DOCS.md
 [github-actions-shield]: https://github.com/elcajon/addon-nextcloud/workflows/CI/badge.svg
 [github-actions]: https://github.com/elcajon/addon-nextcloud/actions
-[i386-shield]: https://img.shields.io/badge/i386-np-red.svg
+[i386-shield]: https://img.shields.io/badge/i386-no-red.svg
 [issue]: https://github.com/elcajon/addon-nextcloud/issues
 [license-shield]: https://img.shields.io/github/license/elcajon/addon-nextcloud.svg
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2021.svg
