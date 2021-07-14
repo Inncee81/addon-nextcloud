@@ -7,10 +7,10 @@
   "init": false,
   "arch": ["aarch64", "amd64"],
   "options": {
-    "log_level": "info"
+    "reset_database": ""
   },
   "schema": {
-    "log_level": "list(trace|debug|info|notice|warning|error|fatal)"
+    "reset_database": "bool"
   },
   "map": [
     "config:rw",
