@@ -29,7 +29,7 @@ if bashio::config.true 'reset_database'; then
     | mysql -h "${host}" -P "${port}" -u "${username}" -p"${password}"
 
     #Remove reset_database option
-    bashio::addon.option 'reset_database'
+    bashio::addon.option 'reset_database' false
 fi
 
 # Create database if not exists
