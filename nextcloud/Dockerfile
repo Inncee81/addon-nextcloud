@@ -9,6 +9,7 @@ COPY rootfs /
 RUN \
   echo "**** install build packages ****" && \
   apk add --no-cache \
+    postfix \
     mysql-client \
     apache2-utils \
     git \
@@ -29,7 +30,7 @@ RUN \
     php7-zlib 
 
 # environment settings
-ENV NEXTCLOUD_PATH="/data/nextcloud" \
+ENV NEXTCLOUD_PATH="/app" \
   LD_PRELOAD="/usr/lib/preloadable_libiconv.so" \
   NEXTCLOUD_RELEASE=22.0.0
 
@@ -123,8 +124,12 @@ RUN \
  fi && \
  echo "**** download nextcloud ****" && \
  mkdir /app && \
- curl -o /app/nextcloud.tar.bz2 -L \
+ curl -o /tmp/nextcloud.tar.bz2 -L \
 	https://download.nextcloud.com/server/releases/nextcloud-${NEXTCLOUD_RELEASE}.tar.bz2 && \
+ tar xf /tmp/nextcloud.tar.bz2 -C "${NEXTCLOUD_PATH}" --strip-components=1 && \
+ chmod +x "${NEXTCLOUD_PATH}/occ" && \
+ chown -R root:root /app && \
+ mv /app/config /app/config.bak && \
  echo "**** cleanup ****" && \
  apk del --purge \
 	build-dependencies && \
