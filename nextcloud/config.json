@@ -28,5 +28,8 @@
   },
   "ports_description": {
     "8080/tcp": "Nextcloud Web Port"
-  }
+  },
+  "snapshot_pre" : "php /app/occ maintenance:mode --on",
+  "snapshot_post" : "php /app/occ maintenance:mode --off",
+  "snapshot_exclude" : ["*/data"]
 }
