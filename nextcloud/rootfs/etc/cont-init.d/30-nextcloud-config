@@ -1,40 +1,50 @@
 #!/usr/bin/with-contenv bashio
 # install app
 fresh_install=false
-if [ ! -e "${NEXTCLOUD_PATH}/index.php" ]; then
+if [ ! -d "/data/config" ]; then
 	bashio::log.info "Installing Nextcloud, this can take a while...."
-	mkdir -p /data/nextcloud
-	mkdir -p /data/nextcloud_data
-	tar xf /app/nextcloud.tar.bz2 -C \
-		"${NEXTCLOUD_PATH}" --strip-components=1
-	chmod +x "${NEXTCLOUD_PATH}/occ"
-
-	chown -R root:root /data/nextcloud /data/nextcloud_data
-
+	mkdir -p /data/data
+#
 	bashio::log.info "Initial Nextcloud setup...."
-    cp /defaults/config.php /data/nextcloud/config/
-	cp /defaults/autoconfig.php /data/nextcloud/config/
-
+	mv /app/config.bak/ /data/config
+    cp /defaults/config.php /data/config/
+	cp /defaults/autoconfig.php /data/config/
+	chown -R root:root /data/config /data/data
+#
 	DBPASS=$(bashio::services "mysql" "password")
 	DBUSER=$(bashio::services "mysql" "username")
 	DBHOST=$(bashio::services "mysql" "host")
 	DBPORT=$(bashio::services "mysql" "port")
 
-	sed -i -- "s/HADBUSER/$DBUSER/g" /data/nextcloud/config/autoconfig.php
-	sed -i -- "s/HADBPASS/$DBPASS/g" /data/nextcloud/config/autoconfig.php
-	sed -i -- "s/HADBHOST/$DBHOST/g" /data/nextcloud/config/autoconfig.php
-	sed -i -- "s/HADBPORT/$DBPORT/g" /data/nextcloud/config/autoconfig.php
+	sed -i -- "s/HADBUSER/$DBUSER/g" /data/config/autoconfig.php
+	sed -i -- "s/HADBPASS/$DBPASS/g" /data/config/autoconfig.php
+	sed -i -- "s/HADBHOST/$DBHOST/g" /data/config/autoconfig.php
+	sed -i -- "s/HADBPORT/$DBPORT/g" /data/config/autoconfig.php
 	fresh_install=true
 fi
+
+if [ -f "/data/config/CAN_INSTALL" ]; then
+	fresh_install=true
+fi
+
+ln -s /data/config /app/config
 
 if [ "bashio::config.has_value 'trusted_domains'" ] && [ "$fresh_install" = false ]; then
 	bashio::log.info "Adding trusted domains...."
 	#reset
-	php /data/nextcloud/occ config:system:set trusted_domains
+	php /app/occ config:system:set trusted_domains
 	#populate
 	NC_TRUSTED_DOMAIN_IDX=1
 	while read -r key; do
-		php /data/nextcloud/occ config:system:set trusted_domains $NC_TRUSTED_DOMAIN_IDX --value=$key
+		php /app/occ config:system:set trusted_domains $NC_TRUSTED_DOMAIN_IDX --value=$key
 		NC_TRUSTED_DOMAIN_IDX=$(($NC_TRUSTED_DOMAIN_IDX+1))
 	done <<< "$(bashio::config 'trusted_domains')"
 fi
+
+if [ "$fresh_install" = false ]; then
+bashio::log.info "Set background to cron...."
+php /app/occ background:cron
+fi
+
+bashio::log.info "Start Postfix in background...."
+postfix start
