@@ -6,6 +6,6 @@ $AUTOCONFIG['dbuser'] = 'HADBUSER';
 $AUTOCONFIG['dbpass'] = 'HADBPASS';
 $AUTOCONFIG['dbhost'] = 'HADBHOST';
 $AUTOCONFIG['dbport'] = 'HADBPORT';
-$AUTOCONFIG['directory'] = '/data/nextcloud_data';
+$AUTOCONFIG['directory'] = '/data/data';
 
 $autoconfig_enabled = true;

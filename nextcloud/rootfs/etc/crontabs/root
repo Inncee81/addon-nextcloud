@@ -6,4 +6,4 @@
 0       3       *       *       6       run-parts /etc/periodic/weekly
 0       5       1       *       *       run-parts /etc/periodic/monthly
 # nextcloud cron
-*/5     *       *       *       *       php7 -f /data/nextcloud/cron.php
+*/5     *       *       *       *       php7 -f /app/cron.php
